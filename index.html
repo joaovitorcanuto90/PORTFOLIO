@@ -51,7 +51,8 @@ a{color:inherit}
 
 .grade{column-count:4;column-gap:18px}
 .marca.forte .grade{column-count:3;column-gap:22px}
-@media (max-width:980px){.grade{column-count:3}.marca.forte .grade{column-count:2}}
+.marca.forte.solo .grade{column-count:1;max-width:900px}
+@media (max-width:980px){.grade{column-count:3}.marca.forte .grade{column-count:2}.marca.forte.solo .grade{column-count:1}}
 @media (max-width:620px){.grade,.marca.forte .grade{column-count:2;column-gap:12px}}
 
 .peca{display:inline-block;width:100%;break-inside:avoid;margin:0 0 22px;text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
@@ -227,7 +228,7 @@ document.addEventListener("securitypolicyviolation",function(e){
   MARCAS.forEach(function(mk){
     var id=slug(mk.nome);
     var a=el("a",null,mk.nome); a.href="#"+id; ix.appendChild(a);
-    var s=el("section","marca"+(mk.forte?" forte":"")); s.id=id;
+    var s=el("section","marca"+(mk.forte?" forte":"")+(mk.forte&&(mk.itens||[]).length===1?" solo":"")); s.id=id;
     s.appendChild(el("h2",null,mk.nome));
     var g=el("div","grade");
     (mk.itens||[]).forEach(function(it){
